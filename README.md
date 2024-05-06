@@ -3,6 +3,7 @@
 
 ## Overview
 Gold Trend is a project designed to analyze and predict trends in gold prices. It uses various data science techniques to provide insights and forecasts that can help investors and analysts in their decision-making process.
+![Gold Trend Analysis](Figure_1.png "Gold Price Trend Visualization")
 
 ## Installation
 
