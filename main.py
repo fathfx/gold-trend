@@ -28,7 +28,7 @@ gold_data['Year'] = gold_data['Date'].dt.year
 
 # Group by month and count the occurrences of each trend
 monthly_trend_summary = gold_data.groupby('Month')['Trend'].value_counts().unstack(fill_value=0)
-
+# print(monthly_trend_summary)
 # Handle no 'Range' data
 if 'Range' not in monthly_trend_summary:
     monthly_trend_summary['Range'] = 0
@@ -59,6 +59,7 @@ ax.set_xticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep
 # Adding the table below the chart
 cell_text = []
 for row in range(len(monthly_trend_summary)):
+    # print(row)
     cell_text.append([
         monthly_trend_summary.loc[row, 'Bullish'],
         monthly_trend_summary.loc[row, 'Bearish'],
@@ -67,7 +68,7 @@ for row in range(len(monthly_trend_summary)):
         f"{monthly_trend_summary.loc[row, 'Percent Bearish']:.2f}%",
         f"{monthly_trend_summary.loc[row, 'Percent Range']:.2f}%"
     ])
-
+# print(monthly_trend_summary)
 table = plt.table(cellText=cell_text,
                   rowLabels=monthly_trend_summary['Month'].apply(lambda x: pd.to_datetime(x, format='%m').strftime('%b')),
                   colLabels=['Bullish', 'Bearish', 'Range', '% Bullish', '% Bearish', '% Range'],
@@ -79,3 +80,4 @@ plt.subplots_adjust(left=0.2, bottom=0.4)
 
 ax.legend()
 plt.show()
+plt.savefig('Figure_2.png')
